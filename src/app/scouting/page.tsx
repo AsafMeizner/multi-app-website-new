@@ -23,6 +23,9 @@ const Scouting = () => {
   const [missCoordinates, setMissCoordinates] = useState<[number, number][]>([]);
   const [poseCoordinates, setPoseCoordinates] = useState<[number, number][]>([[0,0]]);
   const [resetText, setResetText] = useState<string>('');
+  let totalShoots = shootCoordinates.length + missCoordinates.length;
+  let totalMisses = missCoordinates.length;
+  let totalScores = shootCoordinates.length;
 
 
   const getShootButtonClassName = () => {
@@ -197,51 +200,61 @@ const Scouting = () => {
   }, []);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
-      <div style={{ color: 'white', textAlign: 'center' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '20px', fontSize: '48px' }}>Scouting MA 5951</h1>
-        <div style={{ textAlign: 'center' }}>
-          {/* <label htmlFor="teamNumber" style={{ color: 'white', marginRight: '10px', marginBottom: '10px', fontSize: '18px' }}>
-            Team Number:
-          </label> */}
-          <input
-            type="number"
-            id="teamNumber"
-            value={teamNumber}
-            placeholder='Team Number'
-            onChange={(e) => setTeamNumber(e.target.value)}
-            style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
-          />
-          <button className="purpleButton" onClick={handleClick}>
-            Send data
-          </button>
-          <button className="purpleButton" style={{marginLeft: '10px'}} onClick={resetHandleClick}>
-            Reset
-          </button>
-          <button className='purpleButton' style={{marginLeft: '10px'}} onClick={() => router.replace('/scouting/reload')}>
-            Clear canvas
-          </button>
-          <button className={getShootButtonClassName()} style={{marginLeft: '10px'}} onClick={setToScoreBrush}>
-            Scored
-          </button>
-          <button className={getMissButtonClassName()} style={{marginLeft: '10px'}} onClick={setToMissBrush}>
-            Missed
-          </button>
-          <button className={getPoseButtonClassName()} style={{marginLeft: '10px'}} onClick={setToPoseBrush}>
-            Start pose
-          </button>
-        </div>
-        <div
-          id="imageContainer"
-          className="card"
-          style={{ position: 'relative', width: '70vw', overflow: 'hidden' }}
-        >
-          <canvas
-            id="FieldCanvas"
-            style={{ width: '100%', height: '100%' }}
-            onClick={handleImageClick}
-          ></canvas>
-          <p>{resetText}</p>
+    <div>
+    <React.Fragment>
+      <link rel="shortcut icon" href="/static/malogo.ico" />
+    </React.Fragment>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+        <div style={{ color: 'white', textAlign: 'center' }}>
+          <h1 style={{ textAlign: 'center', marginBottom: '20px', fontSize: '48px' }}>Scouting MA 5951</h1>
+          <div style={{ textAlign: 'center' }}>
+            {/* <label htmlFor="teamNumber" style={{ color: 'white', marginRight: '10px', marginBottom: '10px', fontSize: '18px' }}>
+              Team Number:
+            </label> */}
+            <input
+              type="number"
+              id="teamNumber"
+              value={teamNumber}
+              placeholder='Team Number'
+              onChange={(e) => setTeamNumber(e.target.value)}
+              style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
+            />
+            <button className="purpleButton" onClick={handleClick}>
+              Send data
+            </button>
+            <button className="purpleButton" style={{marginLeft: '10px'}} onClick={resetHandleClick}>
+              Reset
+            </button>
+            <button className='purpleButton' style={{marginLeft: '10px'}} onClick={() => router.replace('/scouting/reload')}>
+              Clear canvas
+            </button>
+            <button className={getShootButtonClassName()} style={{marginLeft: '10px'}} onClick={setToScoreBrush}>
+              Scored
+            </button>
+            <button className={getMissButtonClassName()} style={{marginLeft: '10px'}} onClick={setToMissBrush}>
+              Missed
+            </button>
+            <button className={getPoseButtonClassName()} style={{marginLeft: '10px'}} onClick={setToPoseBrush}>
+              Start pose
+            </button>
+          </div>
+          <div style={{ textAlign: 'center', marginTop: '0px', display: 'flex', justifyContent: 'space-between' }}>
+            <p style={{ color: 'white', fontSize: '18px', marginRight: '20px' }}>🔵 Total shots: {totalShoots}</p>
+            <p style={{ color: 'white', fontSize: '18px', marginRight: '20px' }}>🟢 Total scores: {totalScores}</p>
+            <p style={{ color: 'white', fontSize: '18px' }}>🟡 Total misses: {totalMisses}</p>
+          </div>
+          <div
+            id="imageContainer"
+            className="card"
+            style={{ position: 'relative', width: '70vw', overflow: 'hidden' }}
+          >
+            <canvas
+              id="FieldCanvas"
+              style={{ width: '100%', height: '100%' }}
+              onClick={handleImageClick}
+            ></canvas>
+            <p>{resetText}</p>
+          </div>
         </div>
       </div>
     </div>
