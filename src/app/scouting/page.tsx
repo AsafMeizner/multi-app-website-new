@@ -69,22 +69,29 @@ const Scouting = () => {
       return;
     }
     try {
-      const result = await editHttpRequest({
-        team_number: Number(teamNumber),
-        ScoreCoordinates: shootCoordinates,
-        MissCoordinates: missCoordinates,
-        PoseCoordinates: poseCoordinates
-      });
-
+      const result = await toast.promise(
+        editHttpRequest({
+          team_number: Number(teamNumber),
+          ScoreCoordinates: shootCoordinates,
+          MissCoordinates: missCoordinates,
+          PoseCoordinates: poseCoordinates
+        }),
+        {
+          pending: 'Request is pending',
+          success: 'Request processed successfully',
+          error: 'Failed to process the request'
+        }, {theme: 'colored'}
+      );
+  
       if (result.success) {
-        toast.success('Request processed successfully', {theme: 'colored'});
+        // window.confirm('Request processed successfully, dont forget to copy these numbers to the form: scored = ' + shootCoordinates.length + ', missed = ' + missCoordinates.length);
         router.push('/scouting/refresh');
       } else {
-        toast.error(result.error || 'Failed to process the request', {theme: 'colored'});
+        toast.error(result.error || 'Failed to process the request', { theme: 'colored' });
       }
     } catch (error) {
-      console.error('Error sending request:', error);
-      toast.error('Failed to send request', {theme: 'colored'});
+        console.error('Error sending request:', error);
+        toast.error('Failed to send request', { theme: 'colored' });
     }
   };
 
@@ -208,9 +215,6 @@ const Scouting = () => {
         <div style={{ color: 'white', textAlign: 'center' }}>
           <h1 style={{ textAlign: 'center', marginBottom: '20px', fontSize: '48px' }}>Scouting MA 5951</h1>
           <div style={{ textAlign: 'center' }}>
-            {/* <label htmlFor="teamNumber" style={{ color: 'white', marginRight: '10px', marginBottom: '10px', fontSize: '18px' }}>
-              Team Number:
-            </label> */}
             <input
               type="number"
               id="teamNumber"
