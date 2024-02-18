@@ -6,6 +6,7 @@ import { Navbar } from '../components/Navbar';
 import { usePathname } from 'next/navigation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         {!(pathname.includes('urlShortner/') && pathname != 'urlShortner/') && !pathname.includes('scouting') && <Navbar />}
         {children}
         <ToastContainer />
+        <SpeedInsights/>
       </body>
     </html>
   );
