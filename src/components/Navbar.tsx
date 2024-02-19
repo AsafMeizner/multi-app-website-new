@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import Galgol from '../components/galgol';
 import { useState } from "react";
-import homePage from "../app/page";
 
 enum Page {
     Home = '/',
@@ -12,6 +11,8 @@ enum Page {
     RandomNumber = '/randomNumber',
     YoutubeDownloader = '/YoutubeDownloader',
     SortingAlgorithms = '/sortingAlgorithms',
+    QRcode = '/QRcode',
+    OldQR = '/oldQR',
     Scouting = '/scouting'
 }
 
@@ -43,6 +44,12 @@ export const Navbar = (props: Props) => {
             </Link>
             <Link className={getButtonClassName(Page.YoutubeDownloader)}
                 href={'/YoutubeDownloader'} style={{ marginRight: '10px' }}>Youtube Downloader
+            </Link>
+            <Link className={getButtonClassName(Page.QRcode)}
+                href={'/QRcode'} style={{ marginRight: '10px' }}>QR Code Generator
+            </Link>
+            <Link className={getButtonClassName(Page.OldQR)}
+                href={'/oldQR'} style={{ marginRight: '10px' }}>Old QR Code Generator
             </Link>
             <Link className={getButtonClassName(Page.SortingAlgorithms)}
                 href={'/sortingAlgorithms'} style={{ marginRight: '10px' }}>Sorting Algorithms
