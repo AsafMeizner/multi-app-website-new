@@ -42,6 +42,10 @@ const QrCodeGenerator = () => {
     }
   };
 
+  const handleCustomizationChange = (key: string, value: string) => {
+    setCustomization((prev) => ({ ...prev, [key]: value }));
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
       <div style={{ color: 'white', textAlign: 'center' }}>
@@ -54,10 +58,53 @@ const QrCodeGenerator = () => {
         </div>
       </div>
 
-      {/* Add customization options here */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      {/* Customization Options */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px' }}>
         <h2 style={{ textAlign: 'center', fontSize: '24px', color: 'white', margin: '10px 0' }}>Customization Options</h2>
-        {/* Customize body, eye, eyeBall, erf1, erf2, ... */}
+
+        {/* Body Style */}
+        <label style={{ color: 'white', marginBottom: '10px' }}>
+          Body Style:
+          <select value={customization.body} onChange={(e) => handleCustomizationChange('body', e.target.value)}>
+            <option value="square">Square</option>
+            <option value="circle">Circle</option>
+            {/* Add other body styles here */}
+          </select>
+        </label>
+
+        {/* Eye Style */}
+        <label style={{ color: 'white', marginBottom: '10px' }}>
+          Eye Style:
+          <select value={customization.eye} onChange={(e) => handleCustomizationChange('eye', e.target.value)}>
+            <option value="frame0">Frame 0</option>
+            <option value="frame1">Frame 1</option>
+            {/* Add other eye styles here */}
+          </select>
+        </label>
+
+        {/* EyeBall Style */}
+        <label style={{ color: 'white', marginBottom: '10px' }}>
+          EyeBall Style:
+          <select value={customization.eyeBall} onChange={(e) => handleCustomizationChange('eyeBall', e.target.value)}>
+            <option value="ball0">Ball 0</option>
+            <option value="ball1">Ball 1</option>
+            {/* Add other eyeBall styles here */}
+          </select>
+        </label>
+
+        {/* Body Color */}
+        <label style={{ color: 'white', marginBottom: '10px' }}>
+          Body Color:
+          <input type="color" value={customization.bodyColor} onChange={(e) => handleCustomizationChange('bodyColor', e.target.value)} />
+        </label>
+
+        {/* Background Color */}
+        <label style={{ color: 'white', marginBottom: '10px' }}>
+          Background Color:
+          <input type="color" value={customization.bgColor} onChange={(e) => handleCustomizationChange('bgColor', e.target.value)} />
+        </label>
+
+        {/* Other customization options go here */}
       </div>
 
       <button className='purpleButton' onClick={generateQRCode} style={{ margin: '20px 0' }}>Generate QR Code</button>
