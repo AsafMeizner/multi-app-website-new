@@ -18,6 +18,7 @@ const Scouting = () => {
 
   const router = useRouter();
   const [teamNumber, setTeamNumber] = useState('');
+  const [roundNumber, setRoundNumber] = useState('');
   const [selectedBrushValue, setSelectedBrushValue] = useState<brushes>(brushes.shoot);
   const [shootCoordinates, setShootCoordinates] = useState<[number, number][]>([]);
   const [missCoordinates, setMissCoordinates] = useState<[number, number][]>([]);
@@ -67,11 +68,16 @@ const Scouting = () => {
     } else if (teamNumber === '') {
       toast.error('Please enter the team number', {theme: 'colored'});
       return;
+    } else if (roundNumber === '') {
+      toast.error('Please enter the round number', {theme: 'colored'});
+      return;
     }
+
     try {
       const result = await toast.promise(
         editHttpRequest({
           team_number: Number(teamNumber),
+          round_number: Number(roundNumber),
           ScoreCoordinates: shootCoordinates,
           MissCoordinates: missCoordinates,
           PoseCoordinates: poseCoordinates
@@ -94,27 +100,6 @@ const Scouting = () => {
         toast.error('Failed to send request', { theme: 'colored' });
     }
   };
-
-  const resetHandleClick = async () => {
-    if (teamNumber === '') {
-      toast.error('Please enter the team number', {theme: 'colored'});
-      return;
-    }
-    try {
-      // prompt user to make sure he actually wants to reset the data make it so he has to enter the team number again to reset the data
-      const num = window.prompt('Please enter the team number to reset the data');
-
-      if (num != teamNumber) {
-        toast.error('Incorrect team number');
-      } else {
-        let str = String.raw`curl -X POST -H "Content-Type: application/json" -d "{\"team_number\": ${teamNumber}}" https://MA5951.pythonanywhere.com/reset_image`;
-        setResetText(str)
-      }
-    } catch (error) {
-      console.error('Error sending request:', error);
-      toast.error('Failed to send request', {theme: 'colored'});
-    }
-  }
 
   const handleImageClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = event.currentTarget;
@@ -223,11 +208,16 @@ const Scouting = () => {
               onChange={(e) => setTeamNumber(e.target.value)}
               style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
             />
+            <input
+              type="number"
+              id="roundNumber"
+              value={roundNumber}
+              placeholder='Round Number'
+              onChange={(e) => setRoundNumber(e.target.value)}
+              style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
+            />
             <button className="purpleButton" onClick={handleClick}>
               Send data
-            </button>
-            <button className="purpleButton" style={{marginLeft: '10px'}} onClick={resetHandleClick}>
-              Reset
             </button>
             <button className='purpleButton' style={{marginLeft: '10px'}} onClick={() => router.replace('/scouting/reload')}>
               Clear canvas
@@ -257,7 +247,6 @@ const Scouting = () => {
               style={{ width: '100%', height: '100%' }}
               onClick={handleImageClick}
             ></canvas>
-            <p>{resetText}</p>
           </div>
         </div>
       </div>
