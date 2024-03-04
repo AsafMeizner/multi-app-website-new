@@ -3,7 +3,7 @@
 // Import necessary dependencies
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { editHttpRequest, resetHttpRequest } from './actions';
+import { editHttpRequest } from './actions';
 import { useRouter } from 'next/navigation';
 
 // curl -X POST -H "Content-Type: application/json" -d "{\"action\": \"edit\", \"team_number\": 5951, \"ScoreCoordinates\": [[100, 500], [300, 400], [500, 600]], \"MissCoordinates\": [[500, 200], [800, 400], [1000, 100]], \"PoseCoordinates\": [[1500, 500], [1600, 400], [1700, 600]]}" https://MA5951.pythonanywhere.com/update_image
@@ -70,6 +70,9 @@ const Scouting = () => {
       return;
     } else if (roundNumber === '') {
       toast.error('Please enter the round number', {theme: 'colored'});
+      return;
+    } else if (Number(roundNumber) === 0) {
+      toast.error('Round number cannot be 0', {theme: 'colored'});
       return;
     }
 
@@ -204,7 +207,7 @@ const Scouting = () => {
               type="number"
               id="teamNumber"
               value={teamNumber}
-              placeholder='Team Number'
+              placeholder='Team number'
               onChange={(e) => setTeamNumber(e.target.value)}
               style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
             />
@@ -212,7 +215,7 @@ const Scouting = () => {
               type="number"
               id="roundNumber"
               value={roundNumber}
-              placeholder='Round Number'
+              placeholder='Round number'
               onChange={(e) => setRoundNumber(e.target.value)}
               style={{ marginRight: '10px', marginBottom: '10px', backgroundColor: 'rgb(30, 31, 34)', padding: '10px', borderRadius: '5px', border: 'none' }}
             />
