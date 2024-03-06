@@ -69,6 +69,9 @@ const UrlShortener = () => {
 	
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+			<React.Fragment>
+				<title>{"Url shortner"}</title>
+			</React.Fragment>
 			<div style={{ color: 'white' }}>
 				<h1 style={{ textAlign: 'center', marginBottom: '0px', fontSize: '48px' }}>URL Shortener</h1>
 				<input

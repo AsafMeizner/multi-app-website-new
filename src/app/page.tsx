@@ -1,5 +1,7 @@
 "use client";
 
+import Head from 'next/head';
+import React from 'react';
 import { useRef } from 'react';
 
 const HomePage = () => {
@@ -7,6 +9,9 @@ const HomePage = () => {
 
   return (
     <>
+      <React.Fragment>
+        <title>{"Asaf Meizner's website"}</title>
+      </React.Fragment>
       <div className="container" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
         <div ref={divRef} className="content">
           <h1 className="heading" style={{ textAlign: 'center', marginBottom: '5px', fontSize: '48px', color: "white "}}>Main Page</h1>

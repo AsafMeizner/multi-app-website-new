@@ -210,6 +210,7 @@ const Scouting = () => {
     <div>
     <React.Fragment>
       <link rel="shortcut icon" href="/static/malogo.ico" />
+      <title>{"MA scouting interface"}</title> 
     </React.Fragment>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
         <div style={{ color: 'white', textAlign: 'center' }}>
