@@ -93,7 +93,6 @@ const Scouting = () => {
       );
   
       if (result.success) {
-        // window.confirm('Request processed successfully, dont forget to copy these numbers to the form: scored = ' + shootCoordinates.length + ', missed = ' + missCoordinates.length);
         router.push('/scoutingDCMP/reload');
       } else {
         toast.error(result.error || 'Failed to process the request', { theme: 'colored' });
