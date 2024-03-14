@@ -11,16 +11,32 @@ import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
+const disallowedPaths = ['urlShortner/', 'scouting', '3d'];
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
+  if (!disallowedPaths.some(path => pathname.includes(path) && pathname != path)) {
+    const isNavbar = true;
+  } else {
+    const isNavbar = false;
+  }
+  let isNavbar: boolean;
+
+  if (!disallowedPaths.some(path => pathname.includes(path) && pathname != path)) {
+    isNavbar = true;
+  } else {
+    isNavbar = false;
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        {!(pathname.includes('urlShortner/') && pathname != 'urlShortner/') && !pathname.includes('scouting') && <Navbar />}
+        {isNavbar && <Navbar />}
         {children}
         <ToastContainer />
         <SpeedInsights />

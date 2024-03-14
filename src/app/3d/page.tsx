@@ -1,8 +1,8 @@
-import { RobotThreeD } from '@/src/components/robotTD'
+import { RobotThreeD } from '@/src/components/robotModel'
 
 export default function Home() {
     return (
-        <main>
+        <main style={{ marginTop: '10px' }}>
             <RobotThreeD />
         </main>
     );
