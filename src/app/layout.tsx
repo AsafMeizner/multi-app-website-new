@@ -11,7 +11,7 @@ import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const disallowedPaths = ['urlShortner/', 'scouting', '3d', '/.well-known'];
+const disallowedPaths = ['urlShortner/', 'scouting', '3d'];
 
 export default function RootLayout({
   children,
