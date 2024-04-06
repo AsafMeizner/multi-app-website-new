@@ -23,6 +23,9 @@ const UrlShortener = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+      <React.Fragment>
+        <title>{"Random number generator"}</title>
+      </React.Fragment>
       <div style={{ color: 'white', textAlign: 'center' }}>
         <h1 style={{ textAlign: 'center', marginBottom: '0px', fontSize: '48px' }}>Random Number Generator</h1>
         <div style={{ textAlign: 'center' }}>

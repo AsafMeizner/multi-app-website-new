@@ -76,6 +76,9 @@ const YoutubeDownloader = () => {
 
   return (
 	<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+	  <React.Fragment>
+        <title>{"Youtube downloader"}</title>
+      </React.Fragment>
 	  <div style={{ color: 'white', textAlign: 'center' }}>
 		<h1 style={{ textAlign: 'center', marginBottom: '0px', fontSize: '48px' }}>YouTube Downloader</h1>
 		<input

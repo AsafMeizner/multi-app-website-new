@@ -58,6 +58,9 @@ const SortingAlgorithms = () => {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+            <React.Fragment>
+                <title>{"Sorting algorithms visualization"}</title>
+            </React.Fragment>
             <div style={{ color: 'white', textAlign: 'center' }}>
                 <h1 style={{ textAlign: 'center', marginBottom: '0px', fontSize: '48px' }}>Sorting Algorithm Visualization</h1>
                 <div style={{ textAlign: 'center' }}>
