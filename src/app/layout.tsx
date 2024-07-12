@@ -35,6 +35,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <meta name="google-site-verification" content="CcXnsKnCEzv5NFMffTlZNPIOqGpEwm2H5G7aMYnMjdk" />
       <body className={inter.className}>
         {isNavbar && <Navbar />}
         {children}
